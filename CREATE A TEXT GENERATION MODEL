@@ -1,0 +1,19 @@
+# pip install transformers torch
+
+from transformers import pipeline, set_seed
+
+def generate_text_with_gpt(topic, max_length=150):
+
+    # Welcome to the text blender.
+    generator = pipeline('text-generation', model='gpt2')
+    set_seed(42)  # For when you want your genius to be repeatable.
+
+    result = generator(topic, max_length=max_length, num_return_sequences=1)
+    return result[0]['generated_text']
+
+if _name_ == "_main_":
+    topic = "The impact of artificial intelligence on healthcare"
+    print("Summoning the AI muses with GPT-2...")
+    output = generate_text_with_gpt(topic)
+    print("\nVoilà! Your bespoke AI-generated prose:\n")
+    print(output)
